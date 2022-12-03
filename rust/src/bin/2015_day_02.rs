@@ -11,7 +11,7 @@ fn part1(input: String) -> Result<String, String> {
 		Some(d?.parse().unwrap())
 	}
 	for line in input.lines() {
-		let mut dimensions = line.split("x");
+		let mut dimensions = line.split('x');
 		let l = parse_dim(dimensions.next()).unwrap();
 		let w = parse_dim(dimensions.next()).unwrap();
 		let h = parse_dim(dimensions.next()).unwrap();
@@ -29,7 +29,7 @@ fn part2(input: String) -> Result<String, String> {
 		Some(d?.parse().unwrap())
 	}
 	for line in input.lines() {
-		let mut dimensions = line.split("x");
+		let mut dimensions = line.split('x');
 		let l = parse_dim(dimensions.next()).unwrap();
 		let w = parse_dim(dimensions.next()).unwrap();
 		let h = parse_dim(dimensions.next()).unwrap();

@@ -6,8 +6,8 @@ fn main() {
 }
 
 fn part1(input: String) -> Result<String, String> {
-	let up_count = input.matches("(").count();
-	let down_count = input.matches(")").count();
+	let up_count = input.matches('(').count();
+	let down_count = input.matches(')').count();
 	Ok((up_count - down_count).to_string())
 }
 

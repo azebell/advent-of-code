@@ -13,7 +13,7 @@ fn part1(input: String) -> Result<String, String> {
 	for line in input.lines() {
 		let mut characters = line.chars();
 		let p = characters.next().unwrap() as isize - 'A' as isize;
-		let q = characters.skip(1).next().unwrap() as isize - 'X' as isize;
+		let q = characters.nth(1).unwrap() as isize - 'X' as isize;
 
 		points += shape_points[q as usize];
 		points += match q - p {
@@ -33,7 +33,7 @@ fn part2(input: String) -> Result<String, String> {
 	for line in input.lines() {
 		let mut characters = line.chars();
 		let p = characters.next().unwrap() as isize - 'A' as isize;
-		let q = characters.skip(1).next().unwrap() as isize - 'X' as isize;
+		let q = characters.nth(1).unwrap() as isize - 'X' as isize;
 
 		points += q * 3;
 		let offset = match q {
