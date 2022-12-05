@@ -36,9 +36,8 @@ def part2(input_str: str) -> str:
 
     for move in moves.split("\n"):
         qty, source, dest = map(int, move.split()[1::2])
-        tmp = [stacks[source - 1].pop() for _ in range(qty)]
-        for _ in range(qty):
-            stacks[dest - 1].append(tmp.pop())
+        stacks[dest - 1].extend(stacks[source - 1][-qty:])
+        del stacks[source - 1][-qty:]
 
     return "".join([s.pop() for s in stacks])
 
