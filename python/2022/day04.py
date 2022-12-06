@@ -9,9 +9,9 @@ def part1(input_str: str) -> str:
         left = tuple(map(int, left.split("-")))
         right = tuple(map(int, right.split("-")))
 
-        if left[0] >= right[0] and left[1] <= right[1]:
-            contained += 1
-        elif right[0] >= left[0] and right[1] <= left[1]:
+        if (left[0] >= right[0] and left[1] <= right[1]) or (
+            right[0] >= left[0] and right[1] <= left[1]
+        ):
             contained += 1
 
     return str(contained)
