@@ -2,27 +2,19 @@ from aoc import run_solver
 
 
 def part1(input_str: str) -> str:
-    i = 0
-    processed = -1
-    while i + 4 <= len(input_str):
+    for i in range(len(input_str) - 4):
         if len(set(input_str[i : i + 4])) == 4:
-            processed = i + 4
-            break
-        i += 1
+            return i + 4
 
-    return str(processed)
+    return "No marker found"
 
 
 def part2(input_str: str) -> str:
-    i = 0
-    processed = -1
-    while i + 14 <= len(input_str):
+    for i in range(len(input_str) - 14):
         if len(set(input_str[i : i + 14])) == 14:
-            processed = i + 14
-            break
-        i += 1
+            return i + 14
 
-    return str(processed)
+    return "No marker found"
 
 
 if __name__ == "__main__":
