@@ -60,17 +60,7 @@ fn movement(direction: &str) -> Result<(isize, isize), String> {
 fn shift_tail(head: &(isize, isize), tail: &(isize, isize)) -> (isize, isize) {
 	let (dx, dy) = match (head.0 - tail.0, head.1 - tail.1) {
 		(-1..=1, -1..=1) => (0, 0),
-		(x, y) => (unit(x), unit(y)),
+		(x, y) => (x.signum(), y.signum()),
 	};
 	(tail.0 + dx, tail.1 + dy)
-}
-
-fn unit(a: isize) -> isize {
-	if a > 0 {
-		1
-	} else if a < 0 {
-		-1
-	} else {
-		0
-	}
 }
