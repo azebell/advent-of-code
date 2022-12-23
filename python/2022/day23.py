@@ -112,7 +112,49 @@ def part1(input_str: str) -> str:
 
 
 def part2(input_str: str) -> str:
-    return str("UNSOLVED")
+    elves = []
+    for row, line in enumerate(input_str.strip().splitlines()):
+        for col, c in enumerate(line):
+            if c == "#":
+                elves.append((row, col))
+
+    scan_directions = [
+        [(-1, 0), (-1, -1), (-1, 1)],  # north
+        [(1, 0), (1, -1), (1, 1)],  # south
+        [(0, -1), (-1, -1), (1, -1)],  # west
+        [(0, 1), (-1, 1), (1, 1)],  # east
+    ]
+    scan_movements = [
+        (-1, 0),  # north
+        (1, 0),  # south
+        (0, -1),  # west
+        (0, 1),  # east
+    ]
+
+    elves_moved = True
+    round = 0
+    while elves_moved:
+        new_elves = list(
+            map(prepared_get_new_pos(elves, scan_directions, scan_movements), elves)
+        )
+
+        # turn duplicate positions back to previous positions
+        final_elves = new_elves.copy()
+        for i, pos in enumerate(new_elves):
+            if new_elves.count(pos) > 1:
+                final_elves[i] = elves[i]
+
+        elves_moved = any([a != b for a, b in zip(elves, final_elves)])
+
+        elves = final_elves
+
+        # shift scan direction to the next starting spot
+        scan_directions = rotate(scan_directions)
+        scan_movements = rotate(scan_movements)
+
+        round += 1
+
+    return str(round)
 
 
 if __name__ == "__main__":
