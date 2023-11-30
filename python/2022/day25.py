@@ -30,10 +30,27 @@ def encode(number):
     return result[::-1]
 
 
+# def part1(input_str: str) -> str:
+#     numbers = input_str.strip().splitlines()
+#     total = sum(decode(number) for number in numbers)
+#     return encode(total)
+
+
 def part1(input_str: str) -> str:
-    numbers = input_str.strip().splitlines()
-    total = sum(decode(number) for number in numbers)
-    return encode(total)
+    SNAFU = "=-012"
+
+    total = sum(
+        sum(5**i * (SNAFU.index(digit) - 2) for i, digit in enumerate(number[::-1]))
+        for number in input_str.strip().splitlines()
+    )
+
+    snafu_total = ""
+    s = total
+    while s:
+        s, m = divmod(s + 2, 5)
+        snafu_total = SNAFU[m] + snafu_total
+
+    return snafu_total
 
 
 def part2(input_str: str) -> str:
