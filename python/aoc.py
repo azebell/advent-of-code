@@ -10,6 +10,8 @@ def run_solver(solver1: Callable[[str], str], solver2: Callable[[str], str]) -> 
             return solver1(config.input_str)
         case 2:
             return solver2(config.input_str)
+        case 0:
+            return "\n".join([solver1(config.input_str), solver2(config.input_str)])
         case _:
             return f"Error: Invalid challenge part '{config.part}'"
 
