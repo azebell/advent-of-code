@@ -2,32 +2,31 @@ from aoc import run_solver
 
 
 def is_safe(levels):
-    if all(1 <= (b-a) <= 3 for a, b in zip(levels, levels[1:])):
+    diffs = [b - a for a, b in zip(levels, levels[1:])]
+    if all(1 <= diff <= 3 for diff in diffs):
         return True
-    if all(-3 <= (b-a) <= -1 for a, b in zip(levels, levels[1:])):
+    elif all(-3 <= diff <= -1 for diff in diffs):
         return True
     return False
 
 def part1(input_str: str) -> str:
     lines = input_str.strip().split("\n")
-    answer = 0
-    for line in lines:
-        levels = list(map(int, line.split()))
-        if is_safe(levels): answer += 1
+    reports = [list(map(int, line.split())) for line in lines]
+    answer = [is_safe(report) for report in reports].count(True)
     return str(answer)
 
 
 def part2(input_str: str) -> str:
     lines = input_str.strip().split("\n")
+    reports = [list(map(int, line.split())) for line in lines]
     answer = 0
-    for line in lines:
-        levels = list(map(int, line.split()))
-        if is_safe(levels):
+    for report in reports:
+        if is_safe(report):
             answer += 1
             continue
         else:
-            for i in range(len(levels)):
-                if is_safe(levels[:i] + levels[i+1:]):
+            for i in range(len(report)):
+                if is_safe(report[:i] + report[i+1:]):
                     answer += 1
                     break
 
