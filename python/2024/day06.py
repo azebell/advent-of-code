@@ -1,6 +1,4 @@
 from aoc import run_solver
-import re
-from functools import reduce
 
 def turn(x, y):
     return (y, -x)
